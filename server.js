@@ -3,6 +3,7 @@ const cors = require('cors');
 const { application } = require('express');
 require('dotenv').config();
 const rateLimit = require('express-rate-limit');
+const errorHandler = require('./middleware/error');
 
 const PORT = process.env.PORT || 5000;
 
@@ -18,6 +19,12 @@ app.set('trust proxy', 1); // trust first proxy
 
 // routes
 app.use('/api', require('./routes'));
+
+// static files
+app.use(express.static('public'));
+
+// custom error handler middleware
+app.use(errorHandler);
 
 // enable cors
 app.use(cors());
