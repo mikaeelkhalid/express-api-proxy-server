@@ -11,7 +11,7 @@ const app = express();
 // rate limiter
 const limiter = rateLimit({
   windowMs: 5 * 60 * 1000, // 5 minutes
-  max: 5, // limit each IP to 5 requests per windowMs
+  max: 20, // limit each IP to 5 requests per windowMs
 });
 app.use(limiter);
 app.set('trust proxy', 1); // trust first proxy
